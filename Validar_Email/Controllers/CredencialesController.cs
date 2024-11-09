@@ -24,20 +24,23 @@ namespace Validar_Email.Controllers
         }
 
         // GUARDAMOS SI ES VALIDO:
+        [HttpPost]
         public IActionResult Registrar(Credenciales credenciales)
         {
             bool Valido = Validar_Email(credenciales.Email);
 
             if(Valido)
             {
+                // Encriptacion:
+                credenciales.Password = BCrypt.Net.BCrypt.HashPassword(credenciales.Password);
+
                 Lista_Credenciales.Add(credenciales);
 
                 return RedirectToAction("Pagina_Inicio", "Credenciales");
             }
             else
             {
-                TempData["Email_Invalido"] = "No es un Email con domino valido";
-                return View(credenciales);
+                return View("Registrar", credenciales);
             }
         }
 
@@ -74,5 +77,10 @@ namespace Validar_Email.Controllers
         }
 
 
+        // MANDA TODOS LOS REGISTROS:
+        public IActionResult Credenciales_Registradas()
+        {
+            return View(Lista_Credenciales);
+        }
     }
 }
