@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validar_Email", "Validar_Email\Validar_Email.csproj", "{1470BBF9-0EC5-446A-A606-BD7FC71ED125}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnit.Test", "xUnit.Test\xUnit.Test.csproj", "{32C880B9-36A5-45CF-9020-E07E587DD0E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1470BBF9-0EC5-446A-A606-BD7FC71ED125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1470BBF9-0EC5-446A-A606-BD7FC71ED125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1470BBF9-0EC5-446A-A606-BD7FC71ED125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C880B9-36A5-45CF-9020-E07E587DD0E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C880B9-36A5-45CF-9020-E07E587DD0E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C880B9-36A5-45CF-9020-E07E587DD0E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C880B9-36A5-45CF-9020-E07E587DD0E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
