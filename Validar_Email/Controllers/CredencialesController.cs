@@ -8,24 +8,18 @@ namespace Validar_Email.Controllers
     public class CredencialesController : Controller
     {
         // Guardaremos Todos Los Registros:
-        private static List<Credenciales> Lista_Credenciales;
-
-        // Constructor:
-        public CredencialesController()
-        {
-            Lista_Credenciales = new List<Credenciales>();
-        }
+        private static List<Credenciales> Lista_Credenciales = new List<Credenciales>();
 
 
-        // Mostraremos las Opciones a Realizar
-        public IActionResult Pagina_Inicio()
+        // DIRECCIONA A VISTA:
+        public IActionResult Registrar()
         {
             return View();
         }
 
         // GUARDAMOS SI ES VALIDO:
         [HttpPost]
-        public IActionResult Registrar(Credenciales credenciales)
+        public IActionResult Registrar_Credencial(Credenciales credenciales)
         {
             bool Valido = Validar_Email(credenciales.Email);
 
@@ -36,10 +30,11 @@ namespace Validar_Email.Controllers
 
                 Lista_Credenciales.Add(credenciales);
 
-                return RedirectToAction("Pagina_Inicio", "Credenciales");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
+                TempData["Email_Invalido"] = "Error, Email es Invalido.";
                 return View("Registrar", credenciales);
             }
         }
@@ -54,7 +49,7 @@ namespace Validar_Email.Controllers
             }
 
             // Patron:
-            Regex regex = new Regex(@"^[\w0-9._%+-]+@[\w0-9.-]+\.[\w]{2,6}$");
+            Regex regex = new Regex(@"^[\w0-9._%+-]+@[\w0-9.-]+\.[\w]{3}$");
 
             if (regex.IsMatch(Email))
             {
