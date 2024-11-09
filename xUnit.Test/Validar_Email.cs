@@ -1,5 +1,8 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Moq;
 using Validar_Email.Controllers;
 using Validar_Email.Models;
 
@@ -23,12 +26,12 @@ namespace xUnit.Test
 
 
             // Act:
-            RedirectToActionResult? result = Controlador.Registrar(credenciales) as RedirectToActionResult;
+            RedirectToActionResult? result = Controlador.Registrar_Credencial(credenciales) as RedirectToActionResult;
 
-
+             
             // Assert:
-            Assert.Equal("Pagina_Inicio", result.ActionName);
-            Assert.Equal("Credenciales", result.ControllerName);
+            Assert.Equal("Index", result.ActionName);
+            Assert.Equal("Home", result.ControllerName);
         }
 
 
@@ -44,9 +47,12 @@ namespace xUnit.Test
                 Password = "123456"
             };
 
+            // Iniciar TempData:
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            Controlador.TempData = tempData;
 
             // Act:
-            var result = Controlador.Registrar(credenciales) as ViewResult;
+            var result = Controlador.Registrar_Credencial(credenciales) as ViewResult;
 
             // Assert:
             Assert.Equal("Registrar", result.ViewName); 
@@ -68,7 +74,7 @@ namespace xUnit.Test
 
 
             // Act:
-            Assert.Throws<Exception>(() => Controlador.Registrar(credenciales));
+            Assert.Throws<Exception>(() => Controlador.Registrar_Credencial(credenciales));
         }
 
     }
